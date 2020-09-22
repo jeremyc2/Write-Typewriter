@@ -76,8 +76,8 @@ function ReadAndErase {
 
         while($i -ge 0) {
             Start-Sleep -Milliseconds 50;
-            $output = ($line[0..$i] -join "") + " ";
-            Write-Host -NoNewLine "`r$output";
+            $output = $line[0..$i] -join "";
+            Write-Host -NoNewLine "`r$output ";
             $i--;
         }
 
