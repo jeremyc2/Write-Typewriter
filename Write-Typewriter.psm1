@@ -45,20 +45,13 @@ function ReadNormal {
     )
 
     foreach($line in (Get-Content $Filename)){
-        Start-Sleep -Milliseconds 100;
-        Write-Host -NoNewLine "`r";
 
-        $i = 0;
-
-        for(; $i -lt $line.Length - 1; $i++) {
+        foreach($char in $line.toCharArray()) {
             Start-Sleep -Milliseconds 100;
-            $output = ($line[0..$i] -join "");
-            Write-Host -NoNewLine "`r$output";
-            $greatestLength = $output.Length;
+            Write-Host -NoNewLine $char;
         }
 
-        Start-Sleep -Milliseconds 100;
-        Write-Host "`r$line";
+        Write-Host;
 
     }
 }
@@ -73,28 +66,24 @@ function ReadAndErase {
     )
 
     foreach($line in (Get-Content $Filename)){
-        Start-Sleep -Milliseconds 100;
-        Write-Host -NoNewLine "`r";
 
-        $i = 0;
-        $greatestLength = 0;
-
-        for(; $i -lt $line.Length; $i++) {
+        foreach($char in $line.toCharArray()) {
             Start-Sleep -Milliseconds 100;
-            $output = ($line[0..$i] -join "");
-            Write-Host -NoNewLine "`r$output";
-            $greatestLength = $output.Length;
+            Write-Host -NoNewLine $char;
         }
 
-        for(; $i -ge 0; $i--) {
+        $i = $line.Length;
+
+        while($i -ge 0) {
             Start-Sleep -Milliseconds 50;
-            $output = ($line[0..$i] -join "").PadRight($greatestLength);
+            $output = ($line[0..$i] -join "") + " ";
             Write-Host -NoNewLine "`r$output";
-            $greatestLength = $output.Length;
+            $i--;
         }
 
-        Start-Sleep -Milliseconds 50;
+        Write-Host -NoNewLine "`r ";
         Write-Host -NoNewLine "`r";
+        Start-Sleep -Milliseconds 1000;
 
     }
 }
