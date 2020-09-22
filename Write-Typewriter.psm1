@@ -98,6 +98,6 @@ function ReadAndErase {
 
     }
 }
-Set-Alias Typewriter Out-Typewriter;
+Set-Alias Typewriter Write-Typewriter;
 
 Export-ModuleMember -Function Write-Typewriter -Alias Typewriter;
